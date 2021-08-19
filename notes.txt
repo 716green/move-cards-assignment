@@ -1,0 +1,6 @@
+- A form at the top that allows you to add a card with a custom name
+- A horizontal list of added cards
+- Cards should have the following:
+- The name of the card
+- A button to remove the card
+- Buttons to swap positions with the card to the left or right
