@@ -1,5 +1,7 @@
 # Move Cards Assignment
 
+<img src="./screenshot.png" alt="Screenshot">
+
 ## Install
 
 ```bash
