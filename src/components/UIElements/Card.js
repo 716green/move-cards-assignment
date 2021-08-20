@@ -1,9 +1,16 @@
-import React from 'react';
 import './Card.css';
 
 const Card = (props) => {
-  const { name, deleteCard, cardIndex, moveCardLeft, moveCardRight, allCards } =
-    props;
+  const {
+    name,
+    deleteCard,
+    cardIndex,
+    moveCardLeft,
+    moveCardRight,
+    allCards,
+    cardBGColor,
+    flashCards,
+  } = props;
 
   const deleteCardHandler = () => {
     deleteCard(cardIndex);
@@ -11,14 +18,16 @@ const Card = (props) => {
 
   const moveLeftHandler = () => {
     moveCardLeft(cardIndex);
+    flashCards(cardIndex, cardIndex - 1);
   };
 
   const moveRightHandler = () => {
     moveCardRight(cardIndex);
+    flashCards(cardIndex, cardIndex + 1);
   };
 
   return (
-    <div className="card">
+    <div className="card" style={{ backgroundColor: cardBGColor }}>
       <h2>{name}</h2>
       <div className="actions">
         <div>

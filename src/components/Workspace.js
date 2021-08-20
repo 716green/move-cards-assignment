@@ -1,8 +1,20 @@
+import React, { useState } from 'react';
+
 import Card from './UIElements/Card';
 import './Workspace.css';
 
 const Workspace = (props) => {
+  const [cardBGColor, setCardBGColor] = useState('white');
+  const [flashingArray, setFlashingArray] = useState([]);
   const { cards, setCards } = props;
+
+  const flashCards = (...indexes) => {
+    setCardBGColor('lightgray');
+    setTimeout(() => {
+      setCardBGColor('white');
+    }, 500);
+    setFlashingArray([...indexes]);
+  };
 
   const deleteCard = (index) => {
     const cardArr = [...cards];
@@ -11,21 +23,15 @@ const Workspace = (props) => {
   };
 
   const moveCardLeft = (index) => {
-    if (index !== 0) {
-      console.log('Move me Left');
-      let cardArr = [...cards];
-      const currentCard = cardArr[index];
-      const leftCard = cardArr[index - 1];
-      cardArr[index - 1] = currentCard;
-      cardArr[index] = leftCard;
-      setCards(cardArr);
-    } else {
-      alert("Can't move left");
-    }
+    let cardArr = [...cards];
+    const currentCard = cardArr[index];
+    const leftCard = cardArr[index - 1];
+    cardArr[index - 1] = currentCard;
+    cardArr[index] = leftCard;
+    setCards(cardArr);
   };
 
   const moveCardRight = (index) => {
-    console.log('Move me Right');
     let cardArr = [...cards];
     const currentCard = cardArr[index];
     const rightCard = cardArr[index + 1];
@@ -47,6 +53,8 @@ const Workspace = (props) => {
               moveCardLeft={moveCardLeft}
               moveCardRight={moveCardRight}
               allCards={cards}
+              cardBGColor={flashingArray.includes(i) ? cardBGColor : 'white'}
+              flashCards={flashCards}
             />
           );
         })}
